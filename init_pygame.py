@@ -84,12 +84,36 @@ class Node:
         for dr, dc in dir:
             r = self.row + dr
             c = self.col + dc
-            if (r < self.total_rows and r >= 0 and c >= 0 and c < self.total_rows
-                    and not grid[r][c].is_bar()):
+            if (r < self.total_rows and r >= 0 and c >= 0 and c < self.total_rows and not grid[r][c].is_bar()):
                 self.neighbors.append(grid[r][c])
 
 
     def __lt__(self, other):
+        return False
+
+class button():
+    def __init__(self, x, y, width, height, text):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.text = text
+
+    def draw(self,win):
+        #Call this method to draw the button on the screen
+        pygame.draw.rect(win, BLACK, (self.x,self.y, self.width,self.height+4),0)
+            
+        pygame.draw.rect(win, WHITE, (self.x + 2,self.y + 2,self.width-4,self.height-4),0)
+        
+        font = pygame.font.SysFont('comicsans', 20)
+        text = font.render(self.text, 1, BLACK)
+        win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
+
+    def isOver(self, pos):
+        #Pos is the mouse position or a tuple of (x,y) coordinates
+        if pos[0] > self.x and pos[0] < self.x + self.width:
+            if pos[1] > self.y and pos[1] < self.y + self.height:
+                return True
         return False
 
 
@@ -110,13 +134,15 @@ def draw_grid(win, rows, width):
         for j in range(rows):
             pygame.draw.line(win, GREY, (j * gap, 0), (j * gap, width))
 
-def draw(win, grid, rows, width):
+
+def draw(win, grid, rows, width, alg, reset):
     win.fill(WHITE)
     for row in grid:
         for node in row:
             node.draw(win)
-
     draw_grid(win, rows, width)
+    alg.draw(win)
+    reset.draw(win)
     pygame.display.update()
 
 def get_clicked_pos(pos, rows, width):
