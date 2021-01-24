@@ -73,7 +73,7 @@ def bfs(draw, grid, start, end):
             end.make_end()
             reconstruct_path(came_from, end, draw)
             start.make_start()
-            return True
+            return
 
         for neighbor in current.neighbors:
             if neighbor not in visited:
@@ -86,7 +86,7 @@ def bfs(draw, grid, start, end):
         if current != start:
             current.make_closed2()
             
-    return False
+    return
 
 def bider(draw, grid, start, end):
     qstart = deque()
