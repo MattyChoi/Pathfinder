@@ -80,11 +80,11 @@ def bfs(draw, grid, start, end):
                 came_from[neighbor] = current
                 q.append(neighbor)
                 visited.add(neighbor)
-                neighbor.make_open()
+                neighbor.make_open2()
         draw()
 
         if current != start:
-            current.make_closed()
+            current.make_closed2()
             
     return False
 
@@ -133,13 +133,13 @@ def bider(draw, grid, start, end):
                 came_fromEnd[neighbor] = currentEnd
                 qend.append(neighbor)
                 visitEnd.add(neighbor)
-                neighbor.make_open()
+                neighbor.make_open2()
         draw()
 
         if currentStart != start:
             currentStart.make_closed()
 
         if currentEnd != end:
-            currentEnd.make_closed()
+            currentEnd.make_closed2()
             
     return
