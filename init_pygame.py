@@ -2,7 +2,7 @@ import pygame
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLUE = (0, 255, 0)
+BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -30,9 +30,16 @@ class Node:
     def is_closed(self):
         return self.color == RED
 
+    def is_closed2(self):
+        return self.color == BLUE
+
     # checks if open by blocks
     def is_open(self):
         return self.color == GREEN
+
+    # checks if open by blocks
+    def is_open2(self):
+        return self.color == YELLOW
 
     # checks if there is a barrier
     def is_bar(self):
@@ -54,9 +61,16 @@ class Node:
     def make_closed(self):
         self.color = RED
 
+    def make_closed2(self):
+        self.color = BLUE
+
     # make a cube open
     def make_open(self):
         self.color = GREEN
+
+    # make a cube open
+    def make_open2(self):
+        self.color = YELLOW
 
     # makes a barrier
     def make_bar(self):
